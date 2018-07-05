@@ -1,8 +1,5 @@
 require 'pry'
 # Helper Method
-def position_taken?(board, index)
-  !(board[index].nil? || board[index] = " ")
-end
 
 # Define your WIN_COMBINATIONS constant
 WIN_COMBINATIONS = [
@@ -18,50 +15,16 @@ WIN_COMBINATIONS = [
 
 def won?(board)
 
-  WIN_COMBINATIONS.each do |win_combination|
-  
-    if win_combination[0] && win_combination[1]  && win_combination[2] == "X"
-    
-      return  win_combination
-  
-    elsif win_combination[0] && win_combination[1]  && win_combination[2] == "O"
-      return  win_combination
+  WIN_COMBINATIONS.each do |combos|
+   
+    if combos[0]   && combos[1]  && combos[2] == "X" 
+      return combos
+    elsif combos[0]   && combos[1]  && combos[2]  == "O"
+      return combos
     else
-       return false 
-    end 
+      return true
+    end
   end
 end
 
-def full?(board)
-  board.all? { |space|
-    space == "X" || space == "O"  }
-end
 
-def draw?(board)
-  if full?(board) == true && won?(board) == false
-    return true
-  else
-    return false
-  end
-end
-
-def over?(board)
-  if won?(board) == true || full?(board) == true
-    return true
-  else
-    false
-  end
-end
-
-def winner(board)
-  if won?(board) == false
-    return nil
-  else
-    win_array = won?(board)
-  end
-  if board[win_array[0]] == "X"
-    return "X"
-  else
-    return "O"
-  end 
-end
